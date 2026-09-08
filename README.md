@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🚗 ParkShare — Smart Community Parking Marketplace
 
 > A production-grade MERN-stack platform that transforms unused private driveways, residential garages, and commercial parking spaces into an on-demand, bookable parking marketplace.
@@ -364,3 +365,6 @@ For manual testing across all 3 personas, use these credentials or run `npm run 
 1. **Camera Stream Permissions**: The host QR scanner (`/host/scanner`) uses web camera APIs via browser MediaDevices. In local development or deployment, camera access requires an HTTPS connection or `localhost`.
 2. **Mock Payment Gateways**: In production, integrate external webhooks (e.g. Stripe or Razorpay) by substituting the direct payment controller with cryptographic webhook signature verification.
 3. **Map Tiles**: The default Leaflet map utilizes standard OpenStreetMap tiles. In high-traffic production environments, consider configuring a Mapbox or Stadia Maps API key.
+=======
+# ParkShare
+>>>>>>> 781abb763e03c8c2ca1f34d5303d28353d5a32c7
