@@ -100,24 +100,6 @@ cd frontend && npm run dev
 
 ---
 
-## ⚙️ Environment Variables
-
-### Backend (`backend/.env`)
-```env
-PORT=5002
-NODE_ENV=development
-MONGO_URI=mongodb://localhost:27017/parkshare
-JWT_SECRET=parkshare_dev_secret_key_change_in_production
-CLIENT_URL=http://localhost:5173
-```
-
-### Frontend (`frontend/.env`)
-```env
-VITE_API_URL=http://localhost:5002/api
-```
-
----
-
 ## 📡 Key API Endpoints
 
 | Category | Method & Path | Access | Description |
@@ -136,21 +118,6 @@ VITE_API_URL=http://localhost:5002/api
 | **Payments** | `POST /api/payments/process` | Private | Confirm payment & generate QR pass |
 | **Admin** | `GET /api/admin/analytics` | Admin | Platform revenue and usage metrics |
 | | `PUT /api/admin/disputes/:id/resolve`| Admin | Adjudicate driver-host disputes |
-
----
-
-## 🚀 Deployment
-
-- **Database (MongoDB Atlas)**: Provision free M0 cluster, whitelist `0.0.0.0/0`, and paste connection URI into `MONGO_URI`.
-- **Backend (Render / Railway)**:
-  - Root directory: `/backend`
-  - Build command: `npm install` | Start command: `npm start`
-  - Set `MONGO_URI`, `JWT_SECRET`, `CLIENT_URL`, and `NODE_ENV=production`.
-- **Frontend (Vercel / Netlify)**:
-  - Root directory: `/frontend`
-  - Framework: `Vite` | Build: `npm run build` | Output: `dist`
-  - Set `VITE_API_URL` to your production backend URL.
-  - Client routing is pre-configured via `vercel.json` and `_redirects`.
 
 ---
 
