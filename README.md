@@ -1,5 +1,12 @@
-<<<<<<< HEAD
 # 🚗 ParkShare — Smart Community Parking Marketplace
+
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org/)
+[![React Version](https://img.shields.io/badge/react-18.x-blue.svg)](https://reactjs.org/)
+[![Vite](https://img.shields.io/badge/vite-8.x-646CFF.svg)](https://vitejs.dev/)
+[![TailwindCSS](https://img.shields.io/badge/tailwindcss-3.x-38B2AC.svg)](https://tailwindcss.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-6.x%20%7C%202dsphere-47A248.svg)](https://www.mongodb.com/)
+[![Tests](https://img.shields.io/badge/tests-41%2F41%20passing-success.svg)](backend/test_production_readiness.js)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 > A production-grade MERN-stack platform that transforms unused private driveways, residential garages, and commercial parking spaces into an on-demand, bookable parking marketplace.
 
@@ -11,6 +18,7 @@ ParkShare connects parking spot owners (**Hosts**) with drivers in need of safe,
 
 - [Key Features](#-key-features)
 - [Architecture & Tech Stack](#-architecture--tech-stack)
+- [Project Directory Structure](#-project-directory-structure)
 - [Database Models & Schemas](#-database-models--schemas)
 - [Security Auditing & Hardening](#-security-auditing--hardening)
 - [API Reference](#-api-reference)
@@ -24,6 +32,7 @@ ParkShare connects parking spot owners (**Hosts**) with drivers in need of safe,
   - [Database to MongoDB Atlas](#database-setup-mongodb-atlas)
 - [Test Accounts](#-test-accounts)
 - [Known Limitations](#-known-limitations)
+- [License](#-license)
 
 ---
 
@@ -31,8 +40,9 @@ ParkShare connects parking spot owners (**Hosts**) with drivers in need of safe,
 
 ### 1. Driver Experience
 - **Interactive Map Search**: Leaflet-based interactive map with custom pins, radius search, real-time GPS location detection (`Detect My Location`), and distance badges (`📍 X.X km away`).
+- **One-Click Card Navigation**: Click on parking titles, image previews, or "View Parking" to seamlessly open detailed spot specifications, pricing breakdown, and host profile.
 - **Smart Recommendations**: Spots dynamically ranked using proximity, price score, verified security attributes, and host reliability scores.
-- **Vehicle Profiles**: Register multiple vehicles (Bike, Scooter, Hatchback, Sedan, SUV, EV) with duplicate plate prevention.
+- **Vehicle Profiles**: Register multiple vehicles (Bike, Scooter, Hatchback, Sedan, SUV, EV) with duplicate plate validation.
 - **Real-Time Booking & Overlap Protection**: Slot availability calendar with real-time collision detection. Instant price quote breakdown (Base fee, 10% platform fee, 18% GST).
 - **QR Entry Pass**: Instant digital pass generated upon payment confirmation for seamless contactless entry.
 - **Ratings & Reviews**: Drivers with completed bookings can leave detailed 5-star ratings (safety, cleanliness, location) and written feedback.
@@ -89,6 +99,43 @@ ParkShare connects parking spot owners (**Hosts**) with drivers in need of safe,
 | **Database** | MongoDB 6+, Mongoose 8 | Document database with `2dsphere` spatial indexing |
 | **Security** | Helmet, express-rate-limit, express-mongo-sanitize, bcryptjs | Defensive headers, rate limiting, and NoSQL injection mitigation |
 | **Auth** | JSON Web Tokens (JWT) | Dual-mode token retrieval via HTTP-only cookie and Bearer header |
+
+---
+
+## 📁 Project Directory Structure
+
+```text
+ParkShare/
+├── backend/
+│   ├── src/
+│   │   ├── config/              # MongoDB & application configs
+│   │   ├── controllers/         # API business logic handlers
+│   │   ├── middleware/          # Auth guards, role validation, rate-limiting, error handler
+│   │   ├── models/              # Mongoose schemas (User, ParkingSpace, Booking, etc.)
+│   │   ├── routes/              # Express route routers
+│   │   ├── services/            # Pricing algorithms, QR pass generator, map utilities
+│   │   ├── validators/          # Joi/custom request payload validators
+│   │   └── server.js            # Express application bootstrap
+│   ├── test_production_readiness.js # 41-step automated integration test suite
+│   ├── package.json
+│   └── Procfile                 # Deployment process command
+├── frontend/
+│   ├── public/                  # Static assets and _redirects
+│   ├── src/
+│   │   ├── components/          # Reusable UI (Navbar, ParkingCard, ParkingMap, Modals)
+│   │   ├── context/             # AuthContext and global state providers
+│   │   ├── hooks/               # Custom React hooks (useAuth, useGeolocation)
+│   │   ├── pages/               # Persona-based pages (auth, booking, dashboards, host)
+│   │   ├── routes/              # App routing configuration
+│   │   ├── services/            # Axios API client services
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── vercel.json              # Vercel SPA rewrite configuration
+│   ├── tailwind.config.js
+│   ├── vite.config.js
+│   └── package.json
+└── README.md
+```
 
 ---
 
@@ -302,8 +349,9 @@ ParkShare includes an end-to-end integration test suite validating:
 cd backend
 npm run test:prod
 ```
+
 Expected output:
-```
+```text
 ======================================================================
 TEST EXECUTION SUMMARY: 41 PASSED, 0 FAILED (TOTAL: 41)
 ======================================================================
@@ -365,6 +413,9 @@ For manual testing across all 3 personas, use these credentials or run `npm run 
 1. **Camera Stream Permissions**: The host QR scanner (`/host/scanner`) uses web camera APIs via browser MediaDevices. In local development or deployment, camera access requires an HTTPS connection or `localhost`.
 2. **Mock Payment Gateways**: In production, integrate external webhooks (e.g. Stripe or Razorpay) by substituting the direct payment controller with cryptographic webhook signature verification.
 3. **Map Tiles**: The default Leaflet map utilizes standard OpenStreetMap tiles. In high-traffic production environments, consider configuring a Mapbox or Stadia Maps API key.
-=======
-# ParkShare
->>>>>>> 781abb763e03c8c2ca1f34d5303d28353d5a32c7
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
