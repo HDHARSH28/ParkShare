@@ -1,0 +1,21 @@
+import api from './api';
+
+export const getMyNotifications = async (params = {}) => {
+  const res = await api.get('/notifications', { params });
+  return res.data;
+};
+
+export const getUnreadCount = async () => {
+  const res = await api.get('/notifications/unread-count');
+  return res.data;
+};
+
+export const markAsRead = async (id) => {
+  const res = await api.put(`/notifications/${id}/read`);
+  return res.data;
+};
+
+export const markAllAsRead = async () => {
+  const res = await api.put('/notifications/mark-all-read');
+  return res.data;
+};
